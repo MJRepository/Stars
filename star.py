@@ -2,28 +2,27 @@ import setting as st
 import random
 
 
+def create_position(check_list, size) -> int:
+    while True:
+        xy = random.randrange(1, size)
+        if xy not in check_list:
+            return xy
+
+
 class Star:
 
     x_pos = []
     y_pos = []
 
     def __init__(self):
-        self.x = self.create_position(Star.x_pos, st.WIDTH)
-        self.y = self.create_position(Star.y_pos, st.HEIGHT)
+        self.x = create_position(Star.x_pos, st.WIDTH)
+        self.y = create_position(Star.y_pos, st.HEIGHT)
         self.size = random.randrange(1, 6)
         self.star_type = random.randrange(1, 4)
         self.color = None
+        self.update_color()
         Star.x_pos.append(self.x)
         Star.y_pos.append(self.y)
-
-    def create_position(self, check_list, size) -> int:
-        check = True    # Flaga do sprawdzania kodu
-        # !?Lambda
-        while check:
-            xy = random.randrange(1, size)
-            if xy not in check_list:
-                check = False
-        return xy
 
     def draw(self, win):
         st.pygame.draw.circle(win, self.color, (self.x, self.y), self.size)
