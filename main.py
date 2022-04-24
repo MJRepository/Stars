@@ -12,6 +12,7 @@ def main():
     for i in range(1, 500):
         li_test.append(s.Star())
     s.Star.show_xy()    # Podgląd współrzędnych
+    kometa = s.Comet()
 
     steper = 0  # Prędkość obiektów
 
@@ -25,11 +26,15 @@ def main():
             if event.type == st.pygame.QUIT:
                 run = False
 
-        # Pętla do aktualizacji obiektów
+        # Pętla do aktualizacji obiektów gwiazd
         for star in li_test:
-            st.check_step(steper, 4, star.update_color)
-            st.check_step(steper, 6, star.update_position)  # Dzielnik prędkości
+            st.check_step(steper, 2, star.update_color)
+            st.check_step(steper, 5, star.update_position)  # Dzielnik prędkości
             star.draw(st.WIN)
+
+        # Pętla do aktualizacji komet
+        kometa.update_position()
+        kometa.draw(st.WIN)
 
         st.pygame.display.update()
         steper = st.n_step(steper)

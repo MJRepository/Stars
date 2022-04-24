@@ -44,3 +44,10 @@ class Star:
     def show_xy():
         print(Star.x_pos)
         print(Star.y_pos)
+
+
+class Comet(Star):
+
+    def __init__(self):
+        super().__init__()
+        self.color = (255, 255, 255)
